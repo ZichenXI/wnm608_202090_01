@@ -3,5 +3,5 @@
 ## Important Links
 
 - https://xizichen7x.com
-- https://xizichen7x.com/aau/wnm608/Xi.Zichen
-- https://xizichen7x.com/aau/wnm608/Xi.Zichen/recipes/index.html
+- http://xizichen7x.com/aau/wnm608/Xi.Zichen
+- http://xizichen7x.com/aau/wnm608/Xi.Zichen/recipes/index.html
