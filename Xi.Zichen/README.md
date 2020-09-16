@@ -1,7 +1,7 @@
-# Zichen XI
+# zichen xi
 
 ## Important Links
 
 - http://xizichen7x.com
-- http://xizichen7x.com/aau/wnm608/Xi.Zichen
-- http://xizichen7x.com/aau/wnm608/Xi.Zichen/recipes/index.html
+- http://xizichen7x.com/aau/wnm608/xi.xichen
+- http://xizichen7x.com/aau/wnm608/xi.zichen/recipes/index.html
