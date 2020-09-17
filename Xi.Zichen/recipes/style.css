@@ -3,13 +3,16 @@
 
 body{
 	font-family: 'Raleway', sans-serif;
-	color: #4F4F4F
+	background-color:#c0ccb6;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
 }
 
 hr {
 width: 25%;
 height: 1px;
-background-color: #c6eda8;
+background color:#C6EDA8;
 margin-right: auto;
 margin-left: auto;
 margin-top: 5px;
@@ -28,6 +31,7 @@ p {
 	margin-left: 20%;
 	margin-top: 30px;
 	font-weight: 500;
+	line-height: 1.8;
 }
 
 h2 {
@@ -36,17 +40,6 @@ h2 {
 	margin-bottom: 5px;
 }
 
-h3 {
-	margin-top: 50px;
-	margin-bottom: 5px;
-	color: #4F4F4F;
-}
-
-h4 {
-	margin-left: 20%;
-	margin-top: 50px;
-	margin-bottom: 5px;
-}
 
 .row {
   display: flex;
@@ -72,12 +65,20 @@ h4 {
 }
 
 .image {
-	
+
+	border-radius: 20px;
+    display: block;
 	width:312px;
 	height:312px;
 	margin-top: 8px;
+	margin-right: 20%;
+	margin-left: 20%;
+	margin-bottom: 50px;
   	/*border-radius: 8px;*/
 	filter: drop-shadow(2px 2px 2px grey);
+	border-radius: 20px;
+    display: block;
+ 
 
 }
 
@@ -92,6 +93,8 @@ li {
 
 .mainshot {
 
+
+    border-radius: 20px;
 	width:60%;
 	height:50%;
 	margin-right: 20%;
