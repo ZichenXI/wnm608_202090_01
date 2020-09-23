@@ -1,11 +1,17 @@
 :root {
-   --color-neutral-light:#f0ecec;
-   --color-neutral-medium:#9e8d8d;
-   --color-neutral-dark:#392f2f;
+   --color-neutral-light:#eee;
+   --color-neutral-medium:#999;
+   --color-neutral-dark:#ffcf00;
+   --color-neutral-theme1:#ffe00d;
+
+   --color-white:#fff;
+   --color-black:#000;
+
+   --header-height:3rem;
 }
 
 body {
-   font-family:Cera Pro, sans-serif;
+   font-family:Avenir, sans-serif;
    width: 100%;
    line-height: 1.5;
    -webkit-text-size-adjust: 100%;
@@ -20,15 +26,28 @@ body {
     position: relative;
     display: flex;
     top: 50%;
-    left: 50%;
+    left: 75%;
     transform: translate(-50%,-50%);
-    -webkit-box-pack: end;
-    justify-content: flex-end;
-    background-color: rgb(255, 255, 255);
     min-height: 3.125rem;
     padding: 0px 1.25rem;
     border-radius: 1em;
-    color: white;
+    color: #ffcf00;
     font-size: 3em;
 }
     
+.btn{
+   width: fit-content;
+   padding:1em;
+   font-size:1em;
+   font-family: futura;
+}
+
+.btn.cta_primary{
+   background-color:var(--color-neutral-theme1);
+   color:var(--color-neutral-light);
+   
+}
+.cta_primary:hover{
+  box-shadow: ;
+  opacity: 0.5;
+}

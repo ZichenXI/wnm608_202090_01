@@ -1,4 +1,4 @@
-html *, *::before, *::after {
+, *::before, *::after {
    box-sizing:border-box;
 }
 
@@ -6,7 +6,8 @@ html *, *::before, *::after {
 :root {
    --color-neutral-light:#eee;
    --color-neutral-medium:#999;
-   --color-neutral-dark:#444;
+   --color-neutral-dark:#ffcf00;
+   --color-neutral-theme1:#ffe00d;
 
    --color-white:#fff;
    --color-black:#000;
@@ -19,22 +20,24 @@ html *, *::before, *::after {
 body {
    margin:0;
    font-size:100%;
-   font-family:Cera Pro, sans-serif;
+   font-family:Avenir, Arial, sans-serif;
 }
 
 h1,
-h2, {
-   font-family: Cera Pro,sans-serif;
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-family:Avenir, Arial, sans-serif;
+   text-align:center;
+}
 }
 
 a {
    text-decoration: none;
    font-weight: bold;
-   color:inherit;
-   text-transform: uppercase;
-   color:rgb(44, 44, 44);
-   font-weight: 500;
-   font-size: 0.875rem;
+   color:white;
 }
 a:hover {
    text-decoration: underline;
@@ -49,10 +52,6 @@ a:hover {
    max-width:1000px;
    margin-right: auto;
    margin-left: auto;
-   height: 100%;
-   display: flex;
-   -moz-box-align: center;
-   align-items: center;
 }
 .hidden { display:none; }
 
@@ -83,19 +82,18 @@ a:hover {
 }
 
 
+
+
 .navbar {
    background-color:#ffcf00;
-   color:#ffffff;
+   color:var(--color-neutral-theme1);
    line-height:var(--header-height);
-   height: 100%;
-   display: flex;
-   -moz-box-align: center;
-   align-items: center;
 }
 .navbar h1 {
-   font-size:1em;
-   font-family:Cera Pro, sans-serif;
+   font-size:2em;
+   font-family:Avenir, Arial, sans-serif;
    margin:0;
+   color:white;
 }
 .navbar a {
    padding:0 0.5em;
@@ -106,21 +104,16 @@ a:hover {
 
 
 .view-window {
-   position: relative;
-    display: flex;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    -webkit-box-pack: end;
-    justify-content: flex-end;
-    background-color:s#f3e4aa;
-    min-height: 3.125rem;
-    padding: 0px 1.25rem;
-    border-radius: 1em;
-    color: white;
-    font-size: 3em;
+   position:relative;
+   overflow:hidden;
+   background-size:cover;
+   background-position:center;
+   background-attachment:fixed;
+   height:70vh;
 }
-
+.url{
+  width:fixed;
+}
 
 
 
@@ -145,7 +138,7 @@ a:hover {
    }
 
    .card.dark {
-      background-color:var(--color-neutral-dark);
+      background-color:#ffcf00;
       color:var(--color-white);
    }
    .card.medium {
@@ -155,9 +148,6 @@ a:hover {
    .card.flat {
       padding:0;
    }
-
-
-
 
 
 
