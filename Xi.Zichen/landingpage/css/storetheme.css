@@ -1,0 +1,34 @@
+:root {
+   --color-neutral-light:#f0ecec;
+   --color-neutral-medium:#9e8d8d;
+   --color-neutral-dark:#392f2f;
+}
+
+body {
+   font-family:Cera Pro, sans-serif;
+   width: 100%;
+   line-height: 1.5;
+   -webkit-text-size-adjust: 100%;
+   color: #2c2c2c;
+   background: #fff;
+}
+
+
+
+
+.view-window>h2 {
+    position: relative;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    background-color: rgb(255, 255, 255);
+    min-height: 3.125rem;
+    padding: 0px 1.25rem;
+    border-radius: 1em;
+    color: white;
+    font-size: 3em;
+}
+    
