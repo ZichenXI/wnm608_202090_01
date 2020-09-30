@@ -26,7 +26,8 @@ body {
     position: relative;
     display: flex;
     top: 50%;
-    left: 75%;
+    left: 0;
+    width: 100%;
     transform: translate(-50%,-50%);
     min-height: 3.125rem;
     padding: 0px 1.25rem;
@@ -46,8 +47,4 @@ body {
    background-color:var(--color-neutral-theme1);
    color:var(--color-neutral-light);
    
-}
-.cta_primary:hover{
-  box-shadow: ;
-  opacity: 0.5;
 }
