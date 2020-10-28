@@ -5,12 +5,13 @@
    <title>Product Item</title>
 
    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <?php include "parts/meta.php" ?>
+   
+   <link rel="stylesheet" href="lib/css/styleguide.css">
+   <link rel="stylesheet" href="css/storetheme.css">
 
-<link rel="stylesheet" href="lib/css/styleguide.css">
-<link rel="stylesheet" href="css/storetheme.css">
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script></head>
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script></head>
 <body>
    
    <header class="navbar">
@@ -28,11 +29,15 @@
    </div>
 </header>
 
+<?php include "parts/navbar.php" ?>
+
+
    <div class="container">
       <div class="card soft">
          <h2>Product Item</h2>
 
-         <div>This is the product #</div>
+        <div>This is the product #<?= $_GET['id'] ?></div>
+         <div><a href="added_to_cart.php">Add To Cart</a></div>
       </div>
    </div>
 

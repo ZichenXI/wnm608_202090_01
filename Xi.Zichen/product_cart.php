@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <title>Store</title>
+   <title>Product Cart</title>
 
    <?php include "parts/meta.php" ?>
 </head>
@@ -10,13 +10,12 @@
    <?php include "parts/navbar.php" ?>
 
 
-
-   <div class="view-window" style="background-image:url(img/logo.jpg)">
-      <h2>Paper Grils </h2>
-   </div>
    <div class="container">
       <div class="card soft">
-         <h2>Welcome to the Store</h2>
+         <h2>Product Cart</h2>
+
+         <div>This is a cart list</div>
+         <div><a href="product_checkout.php">Checkout</a></div>
       </div>
    </div>
 
