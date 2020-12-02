@@ -1,44 +1,106 @@
+<?php
 
-<!DOCTYPE html>
+include_once "lib/php/functions.php";
+include_once "parts/templates.php";
+
+$product = MYSQLIQuery("SELECT * FROM products WHERE id = {$_GET['id']}")[0];
+
+$thumbs = explode(",",$product->image_other);
+
+$thumbs_elements = array_reduce($thumbs,function($r,$o){
+   return $r."<img src='/images/store/$o'>";
+});
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
-   <title>Product Item</title>
+   <title>Store: <?= $product->title ?></title>
 
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <?php include "parts/meta.php" ?>
-   
-   <link rel="stylesheet" href="lib/css/styleguide.css">
-   <link rel="stylesheet" href="css/storetheme.css">
-
-   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script></head>
+</head>
 <body>
    
-   <header class="navbar">
-   <div class="container display-flex flex-align-center">
-      <div class="flex-none"><h1>Store Website</h1></div>
-      <div class="flex-stretch"></div>
-      
-      <!-- nav.nav>ul>li*4>a[href=#article$]>{Link $} -->
-      <nav class="nav flex-none">
-         <ul class="display-flex">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="product_list.php">Store</a></li>
-         </ul>
-      </nav>
-   </div>
-</header>
-
-<?php include "parts/navbar.php" ?>
+   <?php include "parts/navbar.php" ?>
 
 
    <div class="container">
-      <div class="card soft">
-         <h2>Product Item</h2>
-
-        <div>This is the product #<?= $_GET['id'] ?></div>
-         <div><a href="added_to_cart.php">Add To Cart</a></div>
+      <div class="grid gap">
+         <div class="col-xs-12 col-md-7">
+            <div class="card soft">
+               <div class="image-main">
+                  <img src="/images/store/<?= $product->image_thumb ?>" alt="">
+               </div>
+               <div class="image-thumbs">
+                  <?= $thumbs_elements ?>
+               </div>
+            </div>
+         </div>
+         <div class="col-xs-12 col-md-5">
+            <form class="card soft flat" method="post" action="product_actions.php?action=add-to-cart">
+               <input type="hidden" name="product-id" value="<?= $product->id ?>">
+               <div class="card-section">
+                  <h2><?= $product->title ?></h2>
+                  <div>&dollar;<?= $product->price ?></div>
+                  <div><a href="product_list.php?t=products_by_category&category=<?= $product->category ?>"><?= $product->category ?></a></div>
+               </div>
+               <div class="card-section">
+                  <div class="form-control">
+                     
+                     <label for="product-amount" class="form-label">Amount</label>
+                     <div class="form-select">
+                        <select name="product-amount" id="product-amount">
+                           <!-- option[value=$]*10>{$} -->
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                           <option value="6">6</option>
+                           <option value="7">7</option>
+                           <option value="8">8</option>
+                           <option value="9">9</option>
+                           <option value="10">10</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="form-control">
+                     
+                     <label for="product-color" class="form-label">Color</label>
+                     <div class="form-select">
+                        <select name="product-color" id="product-color">
+                           <option value="red">Red</option>
+                           <option value="green">Green</option>
+                           <option value="blue">Blue</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="form-control">
+                     <input type="submit" class="form-button" value="Add To Cart">
+                  </div>
+               </div>
+            </form>
+         </div>
       </div>
+      <div class="card soft medium">
+         <p><?= $product->description ?></p>
+      </div>
+         <h2>Related Products</h2>
+
+         <div class="grid gap">
+           
+            <?php
+
+            echo array_reduce(
+               MYSQLIQuery("
+                  SELECT *
+                  FROM products
+                  WHERE id in (4,6,8)
+               "),
+               'makeProductList'
+            );
+
+            ?>
+         </div>
    </div>
 
 </body>
