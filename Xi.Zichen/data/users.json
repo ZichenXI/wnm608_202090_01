@@ -1,8 +1,8 @@
 	[{
-		"name": "Fei Xu",
+		"name": "Zichen Xi ",
 		"type": "Student",
-		"email": "asherrfei@gmail.com",
-		"classes": [608, 613, 606]
+		"email": "zichenxi7seven@gmail.com",
+		"classes": [608, 613, 635]
 	},
 	{
 
@@ -17,11 +17,11 @@
 
 	},
 	{
-		"name": "Xincheng Wan",
+		"name": "Yi Zhang Wan",
 
 		"type": "student",
 
-		"email": "xinchengwan1@gmail.com",
+		"email": "yizhang@gmail.com",
 
 		"classes": [608, 613, 615]
 	},

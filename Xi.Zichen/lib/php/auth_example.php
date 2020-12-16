@@ -3,9 +3,9 @@
 
 function MYSQLIAuth() {
    return [
-      "", // Database host location
-      "", // Database user name
-      "", // Database user password
-      "" // Database database name
+      "3306", // Database host location
+      "xizichen7x_xi", // Database user name
+      "xizichen7x_xi", // Database user password
+      "xizichen7x_xi" // Database database name
    ];
 }

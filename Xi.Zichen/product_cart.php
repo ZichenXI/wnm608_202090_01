@@ -1,50 +1,70 @@
 <?php
 
-include_once "lib/php/functions.php";
+include_once "lib/php/function.php";
 include_once "parts/templates.php";
 
 
+$result = getCartItems();
 
-$cart = getCartItems();
+// $o = $result[0];
 
-//print_p($cart);
+// $thumbs = explode(",",$o->images);
 
-
+// print_p($result);
 
 ?><!DOCTYPE html>
-<html lang="en">
-<head>
-   <title>Product Cart</title>
+<html>
+   <head>
+      <?php include "parts/meta.php" ?>
 
-   <?php include "parts/meta.php" ?>
-</head>
-<body>
+      <title>Cart</title>
+   </head>
+   <body>
    
-   <?php include "parts/navbar.php" ?>
+      <?php include "parts/navbar.php" ?> 
+   
+      <div class="container">
+         
+         <div class="card transparent ">
+            <h2 class="text-align-center">CART</h2>
+            <div class="grid gap">
+               <div class="card transparent col-md-12 col-sm-12">          
+                  <?php
 
+                     $cart = getCart();
 
-   <div class="container">
-      <div class="grid gap">
-         <div class="col-xs-12 col-md-8">
-            <div class="card soft">
-               <h2>Product Cart</h2>
-               <?
+                     if(!empty($cart)) {
 
-               echo array_reduce($cart,'makeCartList');
-
-               ?>
-            </div>
-         </div>
-         <div class="col-xs-12 col-md-4">
-            <div class="card soft flat">
-               <div class="card-section">
-                  <h2>Totals</h2>
+                        echo array_reduce($result,"cartListTemplate");
+                        
+                     }else{
+                        echo "<div class='text-align-center padding-top-2 padding-bottom-2'>Your cart is empty! Add an item to the cart!</div>";
+                     }                 
+                   ?>
                </div>
-               <?= cartTotals() ?>
+            <div class="card transparent col-md-12 col-sm-12 text-align-right" style="border-top: 1px solid var(--color-neutral-medium);">
+               <div class="grid">
+                  <div class="col-md-8 col-sm-1"></div>
+                  <div class="col-md-4 col-sm-11">
+                     <?= cartTotal(); ?>
+                     <div>
+                        <a href="checkout.php" class="btn dark form-button">Checkout</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
             </div>
          </div>
       </div>
-   </div>
 
-</body>
+      
+
+<footer>
+      <?php include "parts/footer.php" ?>
+   
+
+</footer>
+
+      <script type="text/javascript" src="styleguide/index.js"></script>
+   </body>
 </html>

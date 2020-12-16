@@ -1,8 +1,8 @@
 :root {
    --color-neutral-light:#eee;
    --color-neutral-medium:#999;
-   --color-neutral-dark:#ffcf00;
-   --color-neutral-theme1:#ffe00d;
+   --color-neutral-dark:#3333ff;
+   --color-neutral-theme1:#8fccec;
 
    --color-white:#fff;
    --color-black:#000;
@@ -32,7 +32,7 @@ body {
     min-height: 3.125rem;
     padding: 0px 1.25rem;
     border-radius: 1em;
-    color: #ffcf00;
+    color: #3333ff;
     font-size: 3em;
 }
     

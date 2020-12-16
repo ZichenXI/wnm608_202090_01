@@ -6,8 +6,8 @@
 :root {
    --color-neutral-light:#eee;
    --color-neutral-medium:#999;
-   --color-neutral-dark:#ffcf00;
-   --color-neutral-theme1:#ffe00d;
+   --color-neutral-dark:#3333ff;
+   --color-neutral-theme1:#8fccec;
 
    --color-white:#fff;
    --color-black:#000;
@@ -85,7 +85,7 @@ a:hover {
 
 
 .navbar {
-   background-color:#ffcf00;
+   background-color:#3333ff;
    color:var(--color-neutral-theme1);
    line-height:var(--header-height);
 }
@@ -134,7 +134,7 @@ a:hover {
    }
 
    .card.dark {
-      background-color:#ffcf00;
+      background-color:#3333ff;
       color:var(--color-white);
    }
    .card.medium {
