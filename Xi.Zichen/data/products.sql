@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost:3306
--- 生成日期： 2020-12-16 08:48:47
+-- 生成日期： 2020-12-16 13:35:02
 -- 服务器版本： 5.6.49-cll-lve
 -- PHP 版本： 7.3.6
 
@@ -19,16 +19,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `xizichen7x_xi`
+-- 数据库： `xizichen7x_608`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `test`
+-- 表的结构 `products`
 --
 
-CREATE TABLE `test` (
+CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `email` varchar(128) NOT NULL,
@@ -37,39 +37,39 @@ CREATE TABLE `test` (
   `date_create` datetime NOT NULL,
   `date_modify` datetime NOT NULL,
   `category` varchar(64) NOT NULL,
-  `image_main` varchar(256) NOT NULL,
+  `main_image` varchar(256) NOT NULL,
   `image_other` varchar(512) NOT NULL,
   `image_thumb` varchar(256) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `test`
+-- 转存表中的数据 `products`
 --
 
-INSERT INTO `test` (`id`, `name`, `email`, `url`, `price`, `date_create`, `date_modify`, `category`, `image_main`, `image_other`, `image_thumb`, `description`) VALUES
-(1, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/1cici.jpg', 'papergirl/image_cici1,papergirl/image_cici2,papergirl/image_cici3,', 'papergirl/image_1cici.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(2, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/2zoe.jpg', 'papergirl/image_zoe1,papergirl/image_zoe2,papergirl/image_zoe3,', 'papergirl/image_2zoe.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(3, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/3keke.jpg', 'papergirl/image_keke1,papergirl/image_keke2,papergirl/image_keke3,', 'papergirl/image_3keke.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(4, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/4betty.jpg', 'papergirl/image_betty1,papergirl/image_betty2,papergirl/image_betty3,', 'papergirl/image_4betty.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(5, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/5sean.jpg', 'papergirl/image_sean1,papergirl/image_sean2,papergirl/image_sean3,', 'papergirl/image_5sean.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(6, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/6jenny.jpg', 'papergirl/image_jenny1,papergirl/image_jenny2,papergirl/image_jenny3,', 'papergirl/image_6jenny.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(7, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/7ming.jpg', 'papergirl/image_ming1,papergirl/image_ming2,papergirl/image_ming3,', 'papergirl/image_7ming.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(8, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/8han.jpg', 'papergirl/image_han1,papergirl/image_han2,papergirl/image_han3,', 'papergirl/image_8han.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(9, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/9ceclia.jpg', 'papergirl/image_cecalia1,papergirl/image_cecalia2,papergirl/image_cecalia3,', 'papergirl/image_9cecalia.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(10, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/10cori.jpg', 'papergirl/image_cori1,papergirl/image_cori2,papergirl/image_cori3,', 'papergirl/image_10cori.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(11, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/11claire.jpg', 'papergirl/image_claire1,papergirl/image_claire2,papergirl/image_claire3,', 'papergirl/image_11claire.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(12, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/12mandy.jpg', 'papergirl/image_mandy1,papergirl/image_mandy2,papergirl/image_mandy3,', 'papergirl/image_12mandy.jpg', 'The paper girl is hand-painted by Zichenxi'),
-(13, '', 'papergirl@painting.com', 'https://papergirl.com', 17, '2020-11-04 17:15:25', '2020-11-04 17:15:25', 'painting', 'papergirl/13girls.jpg', 'papergirl/image_girls1,papergirl/image_girls2,papergirl/image_girls3,', 'papergirl/image_13girls.jpg', 'The paper girl is hand-painted by Zichenxi');
+INSERT INTO `products` (`id`, `name`, `email`, `url`, `price`, `date_create`, `date_modify`, `category`, `main_image`, `image_other`, `image_thumb`, `description`) VALUES
+(1, 'cici', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'color', 'img/1cici_main.jpg', 'img/cici1.jpg,img/cici2.jpg,img/cici3.jpg', 'img/1cici_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(2, 'zoe', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'poster', 'img/2zoe_main.jpg', 'img/zoe1.jpg,img/zoe2.jpg,img/zoe3.jpg', 'img/2zoe_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(3, 'zoe', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'poster', 'img/3keke_main.jpg', 'img/keke1.jpg,img/keke2.jpg,img/keke3.jpg', 'img/3keke_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(4, 'betty', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'poster', 'img/4betty_main.jpg', 'img/betty1.jpg,img/betty2.jpg,img/betty3.jpg', 'img/4betty_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(5, 'sean', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'poster', 'img/5sean_main.jpg', 'img/sean1.jpg,img/sean2.jpg,img/sean3.jpg', 'img/5sean_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(6, 'jenny', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'color', 'img/6jenny_main.jpg', 'img/jenny1.jpg,img/jenny2.jpg,img/jenny3.jpg', 'img/6jenny_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(7, 'ming', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'poster', 'img/7ming_main.jpg', 'img/ming1.jpg,img/ming2.jpg,img/ming3.jpg', 'img/7ming_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(8, 'han', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'poster', 'img/8han_main.jpg', 'img/han1.jpg,img/han2.jpg,img/han3.jpg', 'img/8han_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(9, 'cecalia', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'color', 'img/9cecalia_main.jpg', 'img/cecalia1.jpg,img/cecalia2.jpg,img/cacalia3.jpg', 'img/9cecalia_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(10, 'cori', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'poster', 'img/10cori_main.jpg', 'img/cori1.jpg,img/cori2.jpg,img/cori3.jpg', 'img/10cori_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(11, 'claire', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'color', 'img/11claire_main.jpg', 'img/claire1.jpg,img/claire2.jpg,img/claire3.jpg', 'img/11claire_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(12, 'mandy', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'poster', 'img/12mandy_main.jpg', 'img/mandy1.jpg,img/mandy2.jpg,img/mandy3.jpg', 'img/12mandy_thumb.jpg', 'the paper girl is hand-painted by zichen xi'),
+(13, 'girls', '', '', 17, '2020-12-16 10:05:08', '2020-12-16 10:05:08', 'poster', 'img/girls_main.jpg', 'img/girls1.jpg,img/girls2.jpg,img/girls3.jpg', 'img/girls_thumb.jpg', 'the paper girl is hand-painted by zichen xi');
 
 --
 -- 转储表的索引
 --
 
 --
--- 表的索引 `test`
+-- 表的索引 `products`
 --
-ALTER TABLE `test`
+ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -77,10 +77,10 @@ ALTER TABLE `test`
 --
 
 --
--- 使用表AUTO_INCREMENT `test`
+-- 使用表AUTO_INCREMENT `products`
 --
-ALTER TABLE `test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

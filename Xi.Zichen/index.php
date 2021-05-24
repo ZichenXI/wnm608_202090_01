@@ -1,80 +1,60 @@
 <?php
 
 include_once "lib/php/functions.php";
-include_once "parts/templates.php";
 
+?>
 
- ?><!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-   <title>Welcome to PaperGirls</title>
-   <?php include "parts/meta.php" ?>
-   
-</head>
-<body>
-   
+   <title>Store</title>
+
+   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="lib/css/styleguide.css">
+<link rel="stylesheet" href="lib/css/gridsystem.css">
+<link rel="stylesheet" href="css/storetheme.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script></head>
+   <body>
    <?php include "parts/navbar.php" ?>
+    <nav class="nav flex-none">
+         <ul class="display-flex">
+            <li><a href="product_cart.php">
+               <span class="badge"><?= makeCartBadge() ?></span>
+            </a></li>
+         </ul>
+      </nav>
 
-   <div class="container ">
-      <div class=" grid margin-top-5 margin-bottom-5">
-         
-            <div class="col-sm-12 col-md-6 image boxshadow "><img src="img/1cici.jpg" alt="">
-            </div>
-            <div class="col-md-1"></div>
-         <div class="col-md-5 col-sm-12 ">
-            <div class="card transparent ">
-               <h2 class="medium-color">WELCOME</h2>
-               <br>
-               <p>Hello graphic designer, shop all the paper girls poster here ! You will find the best poster here with Memphis style.</p>
-               
-                <a class="btn dark display-inline-block" href="product_list.php"> shop now </a>
-            </div>
-         </div>
-      </div>
+
+   <div class="view-window" style="background-image:url(img/background2.png)">
    </div>
-
-
    <div class="container">
-      <h2 class="uppercase medium-color text-align-center flex-stretch text-align-center margin-bottom-5">Popular Items</h2>
-      <div class="grid gap margin-bottom-5">
-         <?= array_reduce($randProducts, "popularItems"); ?>
-
+      <div class="card soft">
+         <h2>Welcome to the Store</h2>
       </div>
-   </div>
-
-   <div class="view-window" style="background-image: url(image/landingpage2.png);">
-      <div class="container ">
-         <div class="view-window-img">
-            <img src="image/lg1.png" alt="">
-         </div>
-      <div class="card center text-align-left ">
-         <h1 class="uppercase  medium-color">our story</h1>
-         <br>
-         <p class=" window-msg">The paper girl devotes herself to creating colorful posters and postcards. Learn our story and the little girl's mission statement.</p>
-         <a class="btn window " href="about.php">learn more</a> 
-         
-      </div>
-      </div>   
    </div>
 
    <div class="container">
-
-
-      <div class="card transparent">
-         <div class="meow-icon">
-            <img src="image/logo.png" alt="">
-         </div>
-         <h2 class="uppercase text-align-center">meow with passion</h2>
-         <p class="passion-p">All of our designs are 100% hand-painted!</p>
-         
-      </div>
-      
-   </div>
-   <!-- <div class="view-window" style="background-image: url(https://via.placeholder.com/800?text=Product);">
-      
-   </div> -->
-   
-   <br>
+    <div class="col-xs-12 col-md-7">
+      <h2>New Poster</h2>
+      <div class="col-xs-12 col-md-4">
+         <div class="container">
+            <div class="col-xs-12 col-md-7">
+               <figure class="product-item">
+                  <div class="product-image">
+                     <img src="img/1cici_thumb.jpg" alt="">
+                  </div>
+                  <figcaption class="product-description">
+                     <div class="product-price">&dollar;16</div>
+                     <div class="product-title">cici</div>
+                     <div class="product-description">poster</div>
+                 </figcaption>
+               </figure>
+              
+          </div>
+       </div>
 
 </body>
 
@@ -83,8 +63,7 @@ include_once "parts/templates.php";
    
 
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libsjquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="styleguide/index.js"></script>
-
 
 </html>

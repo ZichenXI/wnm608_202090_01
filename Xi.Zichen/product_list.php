@@ -1,119 +1,147 @@
 <?php
 
-include_once "lib/php/function.php";
+include_once "lib/php/functions.php";
+include_once "parts/templates.php";
+include_once "data/api.php";
 
 
- ?><!DOCTYPE html>
-<html>
+
+setDefault('s','');
+setDefault('t','products_all');
+setDefault('orderby_direction','DESC');
+setDefault('orderby','date_create');
+setDefault('limit','12');
+
+
+
+
+function makeSortOptions() {
+   $options = [
+      ["date_create","DESC","Latest Products"],
+      ["date_create","ASC","Oldest Products"],
+      ["price","DESC","Most Expensive"],
+      ["price","ASC","Least Expensive"]
+   ];
+   foreach($options as [$orderby,$direction,$name]) {
+      echo "
+      <option data-orderby='$orderby' data-direction='$direction'
+      ".($_GET['orderby']==$orderby && $_GET['orderby_direction']==$direction ? "selected" : "").">
+      $name
+      </option>
+      ";
+   }
+}
+
+function makeHiddenValues($arr1,$arr2) {
+   foreach(array_merge($arr1,$arr2) as $k=>$v) {
+      echo "<input type='hidden' name='$k' value='$v'>\n";
+   }
+}
+
+
+
+
+$result = makeStatement($_GET['t']);
+$products = isset($result['error']) ? [] : $result;
+
+
+
+?><!DOCTYPE html>
+<html lang="en">
 <head>
-   <title>Products</title>
+   <title>Product List</title>
+
    <?php include "parts/meta.php" ?>
-
-   <script src="lib/js/functions.js"></script>
-   <script src="js/templates.js"></script>
-   <script src="js/list.js"></script>
-</head> 
+</head>
 <body>
-
    <?php include "parts/navbar.php" ?>
-   
+
    <div class="container">
-      <div class="nav-breadcrumb2 uppercase margin-top-2">
-         <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="product_list.php">Products</a></li>
-         </ul>
-      </div>
-   </div>
 
+      <form action="product_list.php" method="get" class="hotdog stack">
 
-   <div class="container title">
-      <h2 class=" text-align-center uppercase">Products</h2>
-      <p class="text-align-center">All my posters are designed and made with passion. Let's see if there's anything you like today!</p>
+         <input type="search" name="s" placeholder="Search for a product"
+         value="<?= @$_GET['s'] ?>">
 
-      <div class="form-control">
-         <form class="hotdog" id="product-search">
-            <div class="flex-none hotdog-icon"><img src="images/icon_search.png" alt=""></div>
+         <?
+         makeHiddenValues([
+            "orderby"=>$_GET['orderby'],
+            "orderby_direction"=>$_GET['orderby_direction'],
+            "limit"=>$_GET['limit'],
+            "t"=>"search"
+         ],[]);
+         ?>
+
+         <button type="submit">Search</button>
+         <img
+      </form>
+
+      <div class="display-flex" style="margin:1em 0">
+         <div class="flex-none display-flex">
+            <form action="product_list.php" method="get">
+               <?
+               makeHiddenValues($_GET,[
+                  "category"=>"poster",
+                  "t"=>"products_by_category"
+               ]);
+               ?>
+
+               <input type="submit" value="Poster" class="form-button">
+            </form>
+            <form action="product_list.php" method="get">
+               <?
+               makeHiddenValues($_GET,[
+                  "category"=>"poster",
+                  "t"=>"products_by_category"
+               ]);
+               ?>
+
+               <input type="submit" value="Color" class="form-button">
+            </form>
+         </div>
+         <div class="flex-stretch"></div>
+         <div class="flex-none">
             
-            <input type="search" placeholder="Search products..." class="search">
-            
-         </form>
-      </div>
-      
-   
-   </div>
-   
-   <div class="container">
-      <div class="grid gap">
-         <div class="col-md-3 col-sm-12" >
-                           
-               
-                  <div class="card flat filter-form form-control">
-                     <div class="uppercase filter-form-title">
-                        <h2>Filter by</h2>                  
-                     </div>
-                     <div class="uppercase">
-                        <h3>Categories</h3>                 
-                     </div>
-                     <form class="">
-                        <a class="form-link products_filter" data-column="category" data-value="All" >All</a>
-                        <a class="form-link products_filter" data-column="category" data-value="Name" >Name</a>
-                        <a class="form-link products_filter" data-column="category" data-value="Size" >Size</a>
-                       
-                        
-                     </form>s
-                  
-                     <div class="uppercase">
-                        <h3>Colors</h3>
-                     </div>               
-                     <form>
-                        <a class="form-link products_filter" data-column="colors" data-value="">All</a>
-                        <a class="form-link products_filter" data-column="colors" data-value="yellow">Yellow</a>
-                        <a class="form-link products_filter" data-column="colors" data-value="Blue">Blue</a>
-                     </form>
-                  </div>
-                  
-                  <div class="card flat filter-form form-control">
-                     <div class="uppercase filter-form-title">
-                        <h2>Sort by</h2>                 
-                     </div>
-                     <div class="uppercase">
-                        <h3>Price</h3>
-                     </div>
-                     <form>
-                        <a class="form-link products_sort" data-column="price" data-value="1">High to Low</a>
-                        <a class="form-link products_sort" data-column="price" data-value="2">Low to High</a>
-                     </form>
-                     <div class="uppercase">
-                        <h3>Date</h3>
-                     </div>
-                        <form>
-                           <a class="form-link products_sort" data-column="date_created" data-value="3">New to Old</a>
-                           <a class="form-link products_sort" data-column="date_created" data-value="4">Old to New</a>
-                        </form>
-                  </div>
-                  <h5><a href="admin/index.php">Link to Product Admin page </a></h5>
-               
-               
-            </div>
+            <form action="product_list.php" method="get">
 
-         
-         <div class="card transparent col-md-9 col-sm-12">
-            <div class="grid gap productlist">
-               
-            </div>
+               <?
+               makeHiddenValues($_GET,[]);
+               ?>
+               <div class="form-select">
+                  <select onchange="checkSort(this)">
+                     <?=makeSortOptions()?>
+                  </select>
+               </div>
+            </form>
          </div>
       </div>
-         
+
+
+      <h2>Product List</h2>
+
+      <div class="grid gap">
+        
+         <?php
+
+         echo array_reduce(
+            $products,
+            'makeProductList'
+         );
+
+         ?>
+      </div>
    </div>
 
+   <div class="container">
+      <div class="card soft">
+         <a href="admin">Product Admin</a>
+      </div>
+   </div>
 
-<footer>
-      <?php include "parts/footer.php" ?>
-   
+</body>
 
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libsjquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="styleguide/index.js"></script>
 
-      <script type="text/javascript" src="styleguide/index.js"></script>
-   </body>
 </html>

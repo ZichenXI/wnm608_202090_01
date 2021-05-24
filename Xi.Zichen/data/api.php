@@ -10,7 +10,7 @@ function getRequires($props) {
 }
 
 
-function makeStatement($type) {
+function makeStatement($type,$params=[]) {
 
    switch($type) {
       case "products_all":
@@ -18,6 +18,11 @@ function makeStatement($type) {
             FROM `products`
             ORDER BY {$_GET['orderby']} {$_GET['orderby_direction']}
             LIMIT {$_GET['limit']}");
+         break;
+      case "products_admin_all":
+         return MYSQLIQuery("SELECT *
+            FROM `products`
+            ORDER BY date_create DESC");
          break;
 
 
@@ -80,7 +85,7 @@ function makeStatement($type) {
 
          return MYSQLIQuery("SELECT *
             FROM `products`
-            WHERE `title` LIKE '%{$_GET['s']}%'
+            WHERE `name` LIKE '%{$_GET['s']}%'
             ORDER BY {$_GET['orderby']} {$_GET['orderby_direction']}
             LIMIT {$_GET['limit']}
             ");
@@ -89,15 +94,65 @@ function makeStatement($type) {
 
 
 
+
+
+
+case "product_insert":
+         return MYSQLIQuery("INSERT INTO
+            `products`
+            (
+               `name`,
+               `price`,
+               `category`,
+               `description`,
+               `image_other`,
+               `image_main`,
+               `date_create`,
+               `date_modify`
+            )
+            VALUES
+            (
+               '{$params[0]}',
+               '{$params[1]}',
+               '{$params[2]}',
+               '{$params[3]}',
+               '{$params[4]}',
+               '{$params[5]}',
+               NOW(),
+               NOW()
+            )
+            ");
+         break;
+
+      case "product_update":
+         return MYSQLIQuery("UPDATE
+            `products`
+            SET
+               `name` = '{$params[0]}',
+               `price` = '{$params[1]}',
+               `category` = '{$params[2]}',
+               `description` = '{$params[3]}',
+               `image_other` = '{$params[4]}',
+               `image_main` = '{$params[5]}'
+            WHERE `id` = {$params[6]}
+            ");
+         break;
+
+      case "product_delete":
+         return MYSQLIQuery("DELETE FROM
+            `products` WHERE `id` = {$params[0]}
+            ");
+         break;
+
+
+
+
+
+
+
+
+
+
       default: return ["error"=>"No Matched Type"];
    }
 }
-
-
-// if(isset($_GET['t'])) {
-//    echo json_encode(
-//       makeStatement($_GET['t']),
-//       JSON_UNESCAPED_UNICODE |
-//       JSON_NUMERIC_CHECK
-//    );
-// }

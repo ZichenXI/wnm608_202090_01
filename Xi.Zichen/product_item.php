@@ -1,70 +1,106 @@
 <?php
 
-include_once "lib/php/function.php";
+include_once "lib/php/functions.php";
 include_once "parts/templates.php";
 
+$product = MYSQLIQuery("SELECT * FROM products WHERE id = {$_GET['id']}")[0];
 
-$result = getCartItems();
+$thumbs = explode(",",$product->image_other);
 
-// $o = $result[0];
-
-// $thumbs = explode(",",$o->images);
-
-// print_p($result);
+$thumbs_elements = array_reduce($thumbs,function($r,$o){
+   return $r."<img src='$o'>";
+});
 
 ?><!DOCTYPE html>
-<html>
-   <head>
-      <?php include "parts/meta.php" ?>
+<html lang="en">
+<head>
+   <title>Store: <?= $product->name ?></title>
 
-      <title>Cart</title>
-   </head>
-   <body>
+   <?php include "parts/meta.php" ?>
+</head>
+<body>
    
-      <?php include "parts/navbar.php" ?> 
-   
-      <div class="container">
-         
-         <div class="card transparent ">
-            <h2 class="text-align-center">CART</h2>
-            <div class="grid gap">
-               <div class="card transparent col-md-12 col-sm-12">          
-                  <?php
+   <?php include "parts/navbar.php" ?>
 
-                     $cart = getCart();
 
-                     if(!empty($cart)) {
-
-                        echo array_reduce($result,"cartListTemplate");
-                        
-                     }else{
-                        echo "<div class='text-align-center padding-top-2 padding-bottom-2'>Your cart is empty! Add an item to the cart!</div>";
-                     }                 
-                   ?>
+   <div class="container">
+      <div class="grid gap">
+         <div class="col-xs-12 col-md-7">
+            <div class="card soft">
+               <div class="image-main">
+                  <img src="<?= $product->image_main ?>" alt="">
                </div>
-            <div class="card transparent col-md-12 col-sm-12 text-align-right" style="border-top: 1px solid var(--color-neutral-medium);">
-               <div class="grid">
-                  <div class="col-md-8 col-sm-1"></div>
-                  <div class="col-md-4 col-sm-11">
-                     <?= cartTotal(); ?>
-                     <div>
-                        <a href="checkout.php" class="btn dark form-button">Checkout</a>
-                     </div>
-                  </div>
+               <div class="image-thumbs">
+                  <?= $thumbs_elements ?>
                </div>
-            </div>
             </div>
          </div>
-      </div>
+         <div class="col-xs-12 col-md-5">
+            <form class="card soft flat" method="post" action="product_actions.php?action=add-to-cart">
+               <input type="hidden" name="product-id" value="<?= $product->id ?>">
+               <div class="card-section">
+                  <h2><?= $product->name ?></h2>
+                  <div>&dollar;<?= $product->price ?></div>
+               </div>
+               <div class="card-section">
+                  <div class="form-control">
+                     
+                     <label for="product-amount" class="form-label">Amount</label>
+                     <div class="form-select">
+                        <select name="product-amount" id="product-amount">
+                           <!-- option[value=$]*10>{$} -->
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                           <option value="6">6</option>
+                           <option value="7">7</option>
+                           <option value="8">8</option>
+                           <option value="9">9</option>
+                           <option value="10">10</option>
+                        </select>
+                     </div>
+                  </div>
 
-      
+                  </div>
+                  <div class="form-control">
+                     <input type="submit" class="form-button" value="Add To Cart">
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+      <div class="card soft medium">
+         <p><?= $product->description ?></p >
+      </div>
+         <h2>Related Products</h2>
+
+         <div class="grid gap">
+           
+            <?php
+
+            echo array_reduce(
+               MYSQLIQuery("
+                  SELECT *
+                  FROM products
+                  WHERE id in (4,6,8)
+               "),
+               'makeProductList'
+            );
+
+            ?>
+         </div>
+   </div>
+
+</body>
 
 <footer>
       <?php include "parts/footer.php" ?>
    
 
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libsjquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="styleguide/index.js"></script>
 
-      <script type="text/javascript" src="styleguide/index.js"></script>
-   </body>
 </html>

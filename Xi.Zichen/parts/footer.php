@@ -44,6 +44,6 @@
 			</div>
 		</div>
 		<br>
-		<p class="text-align-center col-md-12">Created by Meowie 2020</p>
+		<p class="text-align-center col-md-12">Created by PaperGril 2020</p>
 		<br>
 	</div>

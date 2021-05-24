@@ -1,6 +1,5 @@
 
 
-
 $(()=>{
    $(".image-thumbs img").on("mouseenter",function(e){
       let src = $(this).attr("src");

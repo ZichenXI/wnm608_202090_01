@@ -2,8 +2,6 @@
 
 ## Important Links
 
-- http://xizichen7x.com
-- http://xizichen7x.com/aau/wnm608/xi.zichen
 - http://xizichen7x.com/aau/wnm608/xi.zichen/index.php
 - http://xizichen7x.com/aau/wnm608/xi.zichen/landingpage/index.html
 - http://xizichen7x.com/aau/wnm608/xi.zichen/styleguide/index.html

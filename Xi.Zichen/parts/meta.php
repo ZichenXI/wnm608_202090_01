@@ -1,14 +1,11 @@
-  
-		
-		<meta charset="utf-8" >
-	
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		<base href="/aau/wnm608/xi.zichen/">
-	
-		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900&display=swap" rel="stylesheet">
-	
-		<link rel="stylesheet" type="text/css" href="lib/css/styleguide.css">
-		<link rel="stylesheet" href="css/storetheme.css">
-		<link rel="stylesheet" href="lib/css/gridsystem.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
+ <base href="/aau/wnm608/xi.zichen/">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="lib/css/gridsystem.css">
+<link rel="stylesheet" href="lib/css/styleguide.css">
+<link rel="stylesheet" href="css/storetheme.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="js/products.js"></script>

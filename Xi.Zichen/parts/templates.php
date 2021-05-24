@@ -1,153 +1,150 @@
+<?php
 
-<?php 
 
-
-function productListTemplate($r, $o){
-
+function makeProductList($r,$o) {
 return $r.<<<HTML
-<figure class="product-figure col-md-4 col-sm-6">
-   <a href="product_item.php?id=$o->id">
-   <img src="images/$o->thumbnail" alt="">
-            
-   <figcaption>
-      <h5>$o->productName</h5>
-      <p>&dollar;$o->price</p>
-   </figcaption>
-   </a>
-</figure>
-HTML;
-}
-
-function RelatedProductsListTemplate($r, $o){
-
-return $r.<<<HTML
-<a href='product_item.php?id='>
-   <div class='card transparent col-md-4'>
-                   
-      <div><img src='images/.png'></div>
-               
-      <h4>$o</h4>
-                   
-   </div>
-</a>
-HTML;
-}
-
-function cartListTemplate($r, $o){
-
-// $color = rand(0,1)?"color: Yellow":"";
-// $qty = rand(1,5);
-$pricefixed = number_format($o->total,2,'.','');
-$selectAmount = selectAmount($o->amount);
-
-// print_p([$_SESSION]);
-
-return $r.<<<HTML
-<div class="display-flex product-list-page">
-   <div class="cart-img flex-none">
-      <img  src="images/$o->thumbnail" alt="">
-   </div>
-   <div class="flex-stretch">
-      <div class="display-flex flex-direction-column cartList">
-         <div class="flex-stretch product-name">
-            <h3 class="medium-color">$o->productName ($o->amount)</h3>
-            <h5 class="medium-color" style="font-size: 0.8em;">Color: $o->color </h5>
-            <form method="get" action="data/form_actions.php" class="inline-block form-delete">
-               <input type="hidden" name="action" value="delete-cart-item">
-               <input type="hidden" name="id" value="$o->id">
-               <button type="submit" class="btn delete">Delete</button>
-            </form>
+<div class="col-xs-12 col-md-4">
+   <a href="product_item.php?id=$o->id" class="product-item">
+      <figure>
+         <div class="product-image">
+            <img src="$o->image_thumb" alt="">
          </div>
-         <div class="flex-none" >
-            <h5 class="inline-flex" >&dollar; $pricefixed</h5>
-            <div class="select-amount inline-flex">
-               <form  method="get" action="data/form_actions.php" onchange="this.submit()">
-                  <input type="hidden" name="action" value="update-cart-amount">
-                  <input type="hidden" name="id" value="$o->id">
-                  $selectAmount
-               </form>
-            </div>
-         </div>
-      </div>
-   </div>
+         <figcaption class="product-description">
+            <div class="product-price">&dollar;$o->price</div>
+            <div class="product-title">$o->name</div>
+         </figcaption>
+      </figure>
+   </a >
 </div>
 HTML;
 }
 
 function selectAmount($amount=1,$total=10) {
-   $output = "<select name='amount' class='form-select'>";
+   $output = "<select name='product-amount'>";
    for($i=1;$i<=$total;$i++) {
-      $output .= "<option ".($i==$amount?"selected":"").">$i</option>";
+      $output .= "<option ".($i==$amount?'selected':'').">$i</option>";
    }
    $output .= "</select>";
    return $output;
 }
 
-
-function cartTotal(){
-
-   $cart = getCart();
-   $cartprice = array_reduce($cart, function($r,$o){return $r +($o->amount*$o->price);},0);
-
-   $pricefixed = number_format($cartprice,2,'.','');
-   $taxfixed = number_format($cartprice*0.0725,2,'.','');
-   $total = number_format($cartprice*1.0725,2,'.','');
-
-return<<<HTML
-<div class="color-dark">
-   <p>Subtotal: &dollar; $cartprice</p>
-</div>
-<div class="color-dark"><p>Tax: &dollar; $taxfixed</p>   </div>            
-<div class="color-dark">
-   <p>Total: &dollar; $total</p>
-</div>
-HTML;
-}
-
-
-function makeCartBadge(){
-   if(!isset($_SESSION['cart'])||empty($_SESSION['cart'])){
-      return"";
-   }else return "(".array_reduce($_SESSION['cart'],function($r,$o){return $r+$o->amount;},0).")";
-      
-}
-
-function popularItems($r,$o){
-
+function makeCartList($r,$o) {
+$totalfixed = number_format($o->total,2,'.','');
+$selectamount = selectAmount($o->amount,10);
 return $r.<<<HTML
-<div class="col-md-4 col-sm-12">
-   <figure class="product-figure overlay">
-      <a href="product_item.php?id=$o->id">
-         <img src="images/$o->thumbnail" alt="">
-         <figcaption>
-            <h4 class="popular-item-title">$o->productName</h4>
-            <p class="popular-item-title text-align-center">&dollar; $o->price</p>
-         </figcaption>
-      </a>
-   </figure>
-</div>
-HTML;
-}
-
-function makeListItemTemplate($r,$o) {
-return $r.<<<HTML
-<div class="display-flex product-list-page">
-   <div class="cart-img flex-none">
-      <img  src="images/$o->thumbnail" alt="">
+<div class="display-flex">
+   <div class="flex-none image-thumbs">
+      <img src="$o->image_thumb">
    </div>
    <div class="flex-stretch">
-      <div class="display-flex">
-         <div class="flex-stretch product-name">
-            <h3 class="medium-color">$o->productName</h3>
-            <h5 class="medium-color">$o->category</h5>
+      <strong>$o->name</strong>
+      <form action="product_actions.php?action=delete-cart-item" method="post">
+         <input type="hidden" name="product-id" value="$o->id">
+         <input type="submit" value="Delete" class="btn inline" style="font-size:0.8em">
+      </form>
+   </div>
+   <div class="flex-none">
+      <div>&dollar;$totalfixed</div>
+      <form action="product_actions.php?action=update-cart-item" method="post" onchange="this.submit()">
+         <input type="hidden" name="product-id" value="$o->id">
+         <div class="form-select" style="font-size:0.8em">
+            $selectamount
          </div>
-         <div class="flex-none" >
-            <a href="admin/?id=$o->id" class="btn dark">Edit</a>
-      
-            <a href="product_item.php?id=$o->id" class="btn light">Visit</a>
-         </div>
-      </div>
+      </form>
    </div>
 </div>
 HTML;
+}
+
+
+
+
+function cartTotals() {
+
+$cart = getCartItems();
+
+$cartprice = array_reduce($cart,function($r,$o){return $r+$o->total;},0);
+
+$pricefixed = number_format($cartprice,2,'.','');
+$tax = number_format($cartprice*0.0725,2,'.','');
+$taxed = number_format($cartprice*1.0725,2,'.','');
+
+return <<<HTML
+<div class="card-section display-flex">
+   <div class="flex-stretch"><strong>Sub Total</strong></div>
+   <div class="flex-none">&dollar;$cartprice</div>
+</div>
+<div class="card-section display-flex">
+   <div class="flex-stretch"><strong>Taxes</strong></div>
+   <div class="flex-none">&dollar;$tax</div>
+</div>
+<div class="card-section display-flex">
+   <div class="flex-stretch"><strong>Total</strong></div>
+   <div class="flex-none">&dollar;$taxed</div>
+</div>
+<div class="card-section">
+   <a href="product_checkout.php " class="form-button">Checkout</a >
+</div>
+HTML;
+}
+
+
+
+
+
+
+
+
+function makeAdminList($r,$o) {
+return $r.<<<HTML
+<div class="display-flex card flat soft">
+   <div class="flex-none image-thumbs">
+      <img src="images/store/$o->image_thumb">
+   </div>
+   <div class="flex-stretch" style="padding:1em">
+      <div><strong>$o->name</strong></div>
+      <div>$o->category</div>
+   </div>
+   <div class="flex-none">
+      <div class="card-section"><a href="admin/?id=$o->id" class="form-button">Add</a ></div>
+   </div>
+</div>
+HTML;
+}
+
+
+
+
+
+function makeRecommend($a) {
+$products = array_reduce($a,'makeProductList');
+echo <<<HTML
+<div class="grid gap productlist">$products</div>
+HTML;
+}
+
+
+
+function recommendSimilar($cat,$id=0,$limit=3) {
+   $result = MYSQLIQuery("
+         SELECT *
+         FROM products
+         WHERE
+            `category`='$cat' AND
+            `id` <> $id
+         ORDER BY rand()
+         LIMIT $limit
+      ");
+   makeRecommend($result);
+}
+function recommendCategory($cat,$limit=3) {
+   $result = MYSQLIQuery("
+         SELECT *
+         FROM products
+         WHERE
+            `category`='$cat'
+         ORDER BY `date_create` DESC
+         LIMIT $limit
+      ");
+   makeRecommend($result);
 }

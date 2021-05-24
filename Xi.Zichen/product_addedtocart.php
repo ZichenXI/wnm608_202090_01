@@ -48,7 +48,7 @@ $thumbs = explode(",",$o->images);
       <div class="container">
          
          <div class="card soft">
-            <h2 class="text-align-center">Paper girl!</h2>
+            <h2 class="text-align-center">Papergirls</h2>
             <div class="display-flex added-to-cart margin-bottom-2">
                <div class="cart-img flex-none">
                   <img src="images/<?= $o->thumbnail ?>" alt="">

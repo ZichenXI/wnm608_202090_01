@@ -1,70 +1,52 @@
 <?php
 
-include_once "lib/php/function.php";
+include_once "lib/php/functions.php";
 include_once "parts/templates.php";
 
 
-$result = getCartItems();
 
-// $o = $result[0];
+$cart = getCartItems();
 
-// $thumbs = explode(",",$o->images);
+//print_p($cart);
 
-// print_p($result);
+
 
 ?><!DOCTYPE html>
-<html>
-   <head>
-      <?php include "parts/meta.php" ?>
+<html lang="en">
+<head>
+   <title>Product Cart</title>
 
-      <title>Cart</title>
-   </head>
-   <body>
+   <?php include "parts/meta.php" ?>
+</head>
+<body>
    
-      <?php include "parts/navbar.php" ?> 
-   
-      <div class="container">
-         
-         <div class="card transparent ">
-            <h2 class="text-align-center">CART</h2>
-            <div class="grid gap">
-               <div class="card transparent col-md-12 col-sm-12">          
-                  <?php
+   <?php include "parts/navbar.php" ?>
 
-                     $cart = getCart();
 
-                     if(!empty($cart)) {
+   <div class="container">
+      <div class="grid gap">
+         <div class="col-xs-12 col-md-8">
+            <div class="card soft">
+              <h2>Product Cart</h2>
+               <?
 
-                        echo array_reduce($result,"cartListTemplate");
-                        
-                     }else{
-                        echo "<div class='text-align-center padding-top-2 padding-bottom-2'>Your cart is empty! Add an item to the cart!</div>";
-                     }                 
-                   ?>
-               </div>
-            <div class="card transparent col-md-12 col-sm-12 text-align-right" style="border-top: 1px solid var(--color-neutral-medium);">
-               <div class="grid">
-                  <div class="col-md-8 col-sm-1"></div>
-                  <div class="col-md-4 col-sm-11">
-                     <?= cartTotal(); ?>
-                     <div>
-                        <a href="checkout.php" class="btn dark form-button">Checkout</a>
-                     </div>
-                  </div>
-               </div>
+               echo array_reduce($cart,'makeCartList');
+
+               ?>
             </div>
+            <div class="container "></div>
+         </div>
+         <div class="col-xs-12 col-md-4">
+            <div class="card soft flat">
+               <div class="card-section">
+                  <h2>Totals</h2>
+               </div>
+
+               <?= cartTotals() ?>
             </div>
          </div>
       </div>
+   </div>
 
-      
-
-<footer>
-      <?php include "parts/footer.php" ?>
-   
-
-</footer>
-
-      <script type="text/javascript" src="styleguide/index.js"></script>
-   </body>
+</body>
 </html>
